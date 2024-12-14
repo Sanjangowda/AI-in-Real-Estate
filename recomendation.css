@@ -1,0 +1,110 @@
+.property-card {
+    width: 800px; /* Increased card width */
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    font-size: 14px;
+    display: flex; /* Flexbox layout */
+    flex-direction: row; /* Align content in a row */
+    gap: 20px; /* Add spacing between image and content */
+    padding: 20px;
+    margin: auto; /* Center the card */
+}
+
+.property-image {
+    width: 50%; /* Image takes up half the card */
+    height: auto;
+    object-fit: cover; /* Ensure proper scaling */
+    border-radius: 10px;
+}
+
+.property-details {
+    flex: 1; /* Fill the remaining space */
+    display: flex;
+    flex-direction: column; /* Stack details vertically */
+    justify-content: space-between; /* Evenly space details and actions */
+}
+
+.property-details .status {
+    font-size: 14px;
+    color: #007bff; /* Blue color for status */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.property-details .price {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.property-details .details {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.property-details .address {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px; /* Add spacing between buttons */
+}
+
+.actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.contact-agent {
+    background-color: #007bff; /* Blue button */
+    color: #fff;
+}
+
+.save-property {
+    background-color: #f8f9fa; /* Light gray button */
+    color: #333;
+    border: 1px solid #ddd;
+}
+.search-container {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar {
+    position: relative;
+    width: 60%;
+}
+
+#search-input {
+    width: 100%;
+    padding: 10px 15px 10px 40px; /* Extra left padding to fit the icon */
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: box-shadow 0.3s;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #888;
+}

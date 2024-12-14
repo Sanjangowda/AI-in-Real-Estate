@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Prediction</title>
+    <link rel="Stylesheet" href="app.css">
+</head>
+<body>
+    <h2>Property Price Prediction</h2>
+    
+    <form id="predictionForm" onsubmit="calculatePrice(event)">
+        <label for="size">Property Size (sq ft):</label>
+        <input type="number" id="size" name="size" required>
+    
+        <label for="location">Location (e.g., city, suburb):</label>
+        <input type="text" id="location" name="location" required>
+    
+        <label for="bedrooms">Number of Bedrooms:</label>
+        <input type="number" id="bedrooms" name="bedrooms" required>
+    
+        <label for="bathrooms">Number of Bathrooms:</label>
+        <input type="number" id="bathrooms" name="bathrooms" required>
+    
+        <button type="submit">Predict Price</button>
+    </form>
+
+    <h3>Predicted Price: <span id="predictedPrice"></span></h3>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Recommendation</title>
+    <link rel="stylesheet" href="recomendation.css">
+</head>
+<body>
+    <!-- Search Bar -->
+    <div class="search-container">
+        <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Search by address, price, or details..." 
+            />
+        </div>
+    </div>
+    
+    
+    <!-- Property Cards -->
+    <div class="property-list">
+        <div class="property-card" data-details="For Sale $2278 4 bd 3 ba 2766 sqft 256 Harmony Dr Austin TX">
+            <img src="pro1.jpg" alt="Property Image" class="property-image">
+            <div class="property-details">
+                <p class="status">For Sale</p>
+                <h3 class="price">₹55,00,000</h3>
+                <p class="details">4 bd • 3 ba • 2,766 sqft</p>
+                <p class="address">256 Dollors colony,banglore</p>
+                <div class="actions">
+                    <a href="ownerinfo.html">
+                        <button class="contact-agent">Contact Owner</button>
+                      </a>
+                      
+                    <button class="save-property">♡ Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="property-card" data-details="For Sale $1850 3 bd 2 ba 1800 sqft 123 Sunset Blvd Los Angeles CA">
+            <img src="pro2.jpg" alt="Property Image" class="property-image">
+            <div class="property-details">
+                <p class="status">For Sale</p>
+                <h3 class="price"> ₹48,00,000</h3>
+                <p class="details">3 bd • 2 ba • 1,800 sqft</p>
+                <p class="address">55 Sriram nagar, Mysore 5710</p>
+                <div class="actions">
+                    <button class="contact-agent">Contact Owner</button>
+                    <button class="save-property">♡ Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="property-card" data-details="For Sale $1850 3 bd 2 ba 1800 sqft 123 Sunset Blvd Los Angeles CA">
+            <img src="pro3.jpg" alt="Property Image" class="property-image">
+            <div class="property-details">
+                <p class="status">For Sale</p>
+                <h3 class="price"> ₹50,00,000</h3>
+                <p class="details">3 bd • 2 ba • 1,800 sqft</p>
+                <p class="address">161 Pannambur, Manglore</p>
+                <div class="actions">
+                    <button class="contact-agent">Contact Owner</button>
+                    <button class="save-property">♡ Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+document.getElementById('search-input').addEventListener('input', function (event) {
+    const query = event.target.value.toLowerCase(); // Get search query
+    const propertyCards = document.querySelectorAll('.property-card'); // Get all property cards
+
+    propertyCards.forEach((card) => {
+        const details = card.getAttribute('data-details').toLowerCase(); // Get card details
+        const visibleText = card.innerText.toLowerCase(); // Get visible text inside the card
+        if (details.includes(query) || visibleText.includes(query)) {
+            card.style.display = 'flex'; // Show matching card
+        } else {
+            card.style.display = 'none'; // Hide non-matching card
+        }
+    });
+});
+
+
+    </script>
+  
+</body>
+</html>

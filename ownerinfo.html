@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Agent</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center; /* Horizontally centers the container */
+      align-items: center; /* Vertically centers the container */
+      flex-direction: column;
+      min-height: 100vh; /* Ensures the body takes up full viewport height */
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 120px; /* Adds some space before footer */
+    }
+
+    .contact-agent {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Centers content horizontally */
+      justify-content: center; /* Centers content vertically */
+      margin-top: 20px;
+      text-align: center; /* Centers text */
+    }
+
+    section h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    section p {
+      font-size: 18px;
+      margin: 5px 0;
+    }
+
+    .star-rating {
+      color: gold;
+      font-size: 18px;
+    }
+
+    .star-rating span {
+      padding: 2px;
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+     
+      color: rgb(0, 0, 0);
+      margin-top: auto; /* Pushes the footer to the bottom */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <button class="contact-agent" disabled>Contact Owner</button>
+    </header>
+
+    <section>
+      <h2>Contact Information of Owner</h2>
+      <p><strong>Property Name:</strong> Dream Villa</p>
+      <p><strong>Owner:</strong> John Doe</p>
+      <p><strong>Mobile Number:</strong> +123 456 7890</p>
+      <p><strong>Location:</strong> 123 Dream St, Beverly Hills</p>
+      <p><strong>Rating:</strong> <span class="star-rating">&#9733;&#9733;&#9733;&#9733;&#9734;</span></p>
+    </section>
+  </div>
+
+  <footer style="font-size: 30px;">No Broker!, No Fraudulent Listings</footer>
+
+</body>
+</html>

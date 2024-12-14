@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Fraud Detection</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .warning {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input[type="number"], input[type="text"] {
+            height: 40px;
+        }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        label {
+            font-weight: bold;
+            font-size: 16px;
+            color: #555;
+        }
+        button {
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:focus {
+            outline: none;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+        .result p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #555;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Real Estate Fraud Detection</h1>
+    <div class="container">
+        <form id="listing-form">
+            <div class="form-group">
+                <label for="price">Listing Price:</label>
+                <input type="number" id="price" required placeholder="Enter the listing price">
+            </div>
+
+            <div class="form-group">
+                <label for="area_median_price">Area Median Price:</label>
+                <input type="number" id="area_median_price" required placeholder="Enter the area median price">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Property Description:</label>
+                <textarea id="description" required placeholder="Enter the property description"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="images">Image URLs (comma separated):</label>
+                <input type="text" id="images" required placeholder="Enter image URLs, separated by commas">
+            </div>
+
+            <div class="form-group">
+                <label for="messages">Communication Messages (comma separated):</label>
+                <input type="text" id="messages" required placeholder="Enter communication messages">
+            </div>
+
+            <div class="form-group">
+                <label for="payment_methods">Payment Methods (comma separated):</label>
+                <input type="text" id="payment_methods" required placeholder="Enter payment methods">
+            </div>
+
+            <div class="form-group">
+                <label for="owner_name">Owner Name:</label>
+                <input type="text" id="owner_name" required placeholder="Enter the owner's name">
+            </div>
+
+            <div class="form-group">
+                <label for="legal_documents">Legal Documents Available (true/false):</label>
+                <input type="text" id="legal_documents" required placeholder="Enter true or false">
+            </div>
+
+            <div class="form-group">
+                <label for="listing_urls">Listing URLs (comma separated):</label>
+                <input type="text" id="listing_urls" required placeholder="Enter listing URLs">
+            </div>
+
+            <button type="button" onclick="analyzeListing()">Analyze Listing</button>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Real Estate Fraud Detection. All Rights Reserved.</p>
+    </div>
+
+    <script>
+        function checkUnrealisticPricing(listingPrice, areaMedianPrice) {
+            return listingPrice < 0.7 * areaMedianPrice;
+        }
+
+        function checkHighReturnPromise(description) {
+            const highReturnKeywords = ["guaranteed income", "high return", "100% return", "secure investment"];
+            return highReturnKeywords.some(keyword => description.toLowerCase().includes(keyword.toLowerCase()));
+        }
+
+        function checkMissingPropertyDetails(details) {
+            const requiredDetails = ['address', 'property_age', 'legal_ownership'];
+            let missingDetails = requiredDetails.filter(detail => !details[detail]);
+            return missingDetails;
+        }
+
+        function checkFakePhotos(imageUrls) {
+            // Placeholder for image validation
+            return imageUrls.filter(url => !isUniqueImage(url));
+        }
+
+        function isUniqueImage(imageUrl) {
+            // Placeholder: assume images are unique
+            return true;
+        }
+
+        function checkUnprofessionalCommunication(messages) {
+            return messages.some(message => message.split(' ').length < 5 || /\b([a-zA-Z0-9]+)(\s*\1)+\b/.test(message));
+        }
+
+        function checkSuspiciousPaymentMethods(paymentMethods) {
+            const suspiciousMethods = ["wire transfer", "cryptocurrency", "cash only"];
+            return paymentMethods.some(method => suspiciousMethods.includes(method.toLowerCase()));
+        }
+
+        function checkPressureTactics(description) {
+            const urgencyKeywords = ["act fast", "limited time", "urgent", "last chance"];
+            return urgencyKeywords.some(keyword => description.toLowerCase().includes(keyword.toLowerCase()));
+        }
+
+        function checkDuplicatedListing(listingUrls) {
+            return new Set(listingUrls).size < listingUrls.length;
+        }
+
+        function checkOwnershipVerification(ownerName, legalDocuments) {
+            return !ownerName || !legalDocuments;
+        }
+
+        function analyzeListing() {
+            // Collect input data
+            const listingPrice = parseFloat(document.getElementById('price').value);
+            const areaMedianPrice = parseFloat(document.getElementById('area_median_price').value);
+            const description = document.getElementById('description').value;
+            const images = document.getElementById('images').value.split(',');
+            const messages = document.getElementById('messages').value.split(',');
+            const paymentMethods = document.getElementById('payment_methods').value.split(',');
+            const ownerName = document.getElementById('owner_name').value;
+            const legalDocuments = document.getElementById('legal_documents').value === 'true';
+            const listingUrls = document.getElementById('listing_urls').value.split(',');
+
+            // Analyze listing
+            let result = "";
+
+            if (checkUnrealisticPricing(listingPrice, areaMedianPrice)) {
+                result += "<p class='warning'>Warning: Unrealistic pricing detected.</p>";
+            }
+
+            if (checkHighReturnPromise(description)) {
+                result += "<p class='warning'>Warning: High return promise detected.</p>";
+            }
+
+            const missingDetails = checkMissingPropertyDetails({ address: "", property_age: "", legal_ownership: "" });
+            if (missingDetails.length) {
+                result += `<p class='warning'>Warning: Missing details - ${missingDetails.join(", ")}</p>`;
+            }
+
+            const fakePhotos = checkFakePhotos(images);
+            if (fakePhotos.length) {
+                result += `<p class='warning'>Warning: Fake photos detected from the following URLs: ${fakePhotos.join(", ")}</p>`;
+            }
+
+            if (checkUnprofessionalCommunication(messages)) {
+                result += "<p class='warning'>Warning: Unprofessional communication detected.</p>";
+            }
+
+            if (checkSuspiciousPaymentMethods(paymentMethods)) {
+                result += "<p class='warning'>Warning: Suspicious payment methods detected.</p>";
+            }
+
+            if (checkPressureTactics(description)) {
+                result += "<p class='warning'>Warning: Pressure tactics detected.</p>";
+            }
+
+            if (checkDuplicatedListing(listingUrls)) {
+                result += "<p class='warning'>Warning: Duplicated listings detected.</p>";
+            }
+
+            if (checkOwnershipVerification(ownerName, legalDocuments)) {
+                result += "<p class='warning'>Warning: Ownership verification or legal documents missing.</p>";
+            }
+
+            document.getElementById('result').innerHTML = result || "<p>No fraud detected.</p>";
+        }
+    </script>
+
+</body>
+</html>
